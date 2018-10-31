@@ -13,7 +13,7 @@ void exitAndUpgradeFeatherApp() async {
   final id = await getFeatherAppId();
   final home = Platform.environment['HOME'];
   await Process.start(
-      '$home/Library/Application Support/Feather Apps/App Launcher.app/Contents/MacOS/App Launcher',
+      '$home/Library/Application Support/Feather Apps/latest/App Launcher.app/Contents/MacOS/App Launcher',
       ['-id', id],
       mode: ProcessStartMode.detached);
   exit(0);
@@ -36,7 +36,6 @@ void checkForNewVersion(Function newVersionCallback) async {
   final id = await getFeatherAppId();
   final vers = await getFeatherAppVersion();
   final agent = await getFeatherAgent();
-  print('**** sending agent id = $agent');
 
   // await Future.delayed(const Duration(seconds: 1));
 

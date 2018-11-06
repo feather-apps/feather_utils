@@ -9,6 +9,8 @@ import 'package:http/http.dart';
 const MethodChannel _channel =
 const MethodChannel('plugins.feather-apps.com/feather_utils');
 
+String featherServer = 'https://developer.feather-apps.com/FeatherAppsAlpha';
+
 void exitAndUpgradeFeatherApp() async {
   final id = await getFeatherAppId();
   final home = Platform.environment['HOME'];
@@ -41,7 +43,7 @@ void checkForNewVersion(Function newVersionCallback) async {
 
   final client = Client();
   try {
-    final url = 'https://localhost:8443/FeatherApps/VersionCheck'
+    final url = '$featherServer/VersionCheck'
         '?feather-app-id=$id&feather-app-version=$vers&feather-agent-id=$agent';
     final response = await client.get(url);
     if (response.statusCode == HttpStatus.upgradeRequired) {
